@@ -38,12 +38,12 @@ public abstract class Wallet {
     public List<Money> reduceMoney(final long amount){
         List<Money> toRemove = new ArrayList<>();
         for (int i = 0; i < amount; i++) {
-            toRemove.add(this.money.removeFirst());
+            boolean b = toRemove.add(((List<Money>) this.money).removeFirst());
         }
         return toRemove;
     }
 
-    public List<MoneyAudit> getFinancialTransactions(){
+    public List<Money> getFinancialTransactions(){
         return money.stream().flatMap(m -> m.getHistory().stream()).toList();
     }
 
