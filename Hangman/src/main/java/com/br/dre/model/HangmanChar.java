@@ -7,7 +7,6 @@ public class HangmanChar {
     private boolean isVisible;
     private int position;
 
-
     public HangmanChar(char character) {
         this.character = character;
         this.isVisible = false;
