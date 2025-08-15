@@ -17,6 +17,7 @@ public class HangmanChar {
         this.position = position;
         this.isVisible = true;
     }
+    
 
     public char getCharacter() {
         return character;
