@@ -5,7 +5,12 @@ package com.br.repository;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.br.exception.AccountWithInvestmentException;
+import com.br.exception.InvestmentNotFoundException;
+import com.br.exception.WalletNotFoundException;
 import com.br.model.AccountWallet;
+import com.br.model.Investment;
+import com.br.model.InvestmentWallet;
 
 import static com.br.repository.CommonsRepository.checkFundsForTransaction;
 

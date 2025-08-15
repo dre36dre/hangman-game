@@ -1,6 +1,16 @@
 package com.br.repository;
 
-public class InvestmentRepository {
+import java.util.ArrayList;
+import java.util.List;
+
+import com.br.exception.AccountWithInvestmentException;
+import com.br.exception.InvestmentNotFoundException;
+import com.br.exception.WalletNotFoundException;
+import com.br.model.AccountWallet;
+import com.br.model.Investment;
+import com.br.model.InvestmentWallet;
+
+public class AccountRepository {
 
     private long nextId = 0;
     private final List<Investment> investments = new ArrayList<>();
@@ -9,25 +19,30 @@ public class InvestmentRepository {
     public Investment create(final long tax, final long initialFunds){
         this.nextId ++;
         var investment = new Investment(this.nextId, tax, initialFunds);
-        investments.add(investment);
+        investment.add(investment);
         return investment;
     }
 
     public InvestmentWallet initInvestment(final AccountWallet account, final long id){
         if (!wallets.isEmpty()) {
-            var accountsInUse = wallets.stream().map(InvestmentWallet::getAccount).toList();
+            var accountsInUse = wallets.stream().map(InvestmentWallet :: getAccount).toList();
             if (accountsInUse.contains(account)) {
                 throw new AccountWithInvestmentException("A conta'" + account + "'já possui um investimento");
             }
         }
         var investment = findById(id);
         checkFundsForTransaction(account, investment.initialFunds());
-        var wallet = new InvestmentWallet(investment, account, investment.initialFunds());
+        var wallet = new InvestmentWallet  (investment, account, investment.initialFunds());
         wallets.add(wallet);
         return wallet;
     }
 
-    public InvestmentWallet deposit(final String pix, final long funds){
+    private void checkFundsForTransaction(AccountWallet account, long initialFunds) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public InvestmentWallet deposit(final String pix, final long funds){
         var wallet = findWalletByAccountPix(pix);
         wallet.addMoney(wallet.getAccount().reduceMoney(funds), wallet.getService(), "Investimento");
         return wallet;

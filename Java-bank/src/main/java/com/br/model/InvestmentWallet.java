@@ -1,6 +1,5 @@
 package com.br.model;
 
-import java.time.OffsetDateTime;
 import java.util.UUID;
 import java.util.stream.Stream;
 

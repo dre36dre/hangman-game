@@ -16,4 +16,9 @@ public record Investment(
                 ", initialFunds=" + (initialFunds / 100) + "," + (initialFunds % 100) +
                 '}';
     }
+
+	public void add(Investment investment) {
+		// TODO Auto-generated method stub
+		
+	}
 }
